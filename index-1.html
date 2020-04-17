@@ -16,7 +16,29 @@
     };
     reader.readAsDataURL(blob);
 };
-			document.addEventListener("DOMContentLoaded", function() {
+			(function(exports, d) {
+  function domReady(fn, context) {
+
+    function onReady(event) {
+      d.removeEventListener("DOMContentLoaded", onReady);
+      fn.call(context || exports, event);
+    }
+
+    function onReadyIe(event) {
+      if (d.readyState === "complete") {
+        d.detachEvent("onreadystatechange", onReadyIe);
+        fn.call(context || exports, event);
+      }
+    }
+
+    d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+    d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+  }
+
+  exports.domReady = domReady;
+})(window, document);
+			
+			domReady( function() {
 var xhr = new XMLHttpRequest();
 xhr.open('get', 'https://rvramesh.com/pdf-object-ie11/scansmpl.pdf', true);
 
