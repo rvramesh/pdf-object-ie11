@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <object
+      data="https://solutions.weblite.ca/pdfocrx/scansmpl.pdf"
+      type="text/pdf"
+      style="width:100%;height:100vh;"
+			id="hello-world"
+    >
+		</object>
+		<script>
+			var blobToBase64 = function(blob, callback) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var dataUrl = reader.result;
+        var base64 = dataUrl.split(',')[1];
+        callback(base64);
+    };
+    reader.readAsDataURL(blob);
+};
+var xhr = new XMLHttpRequest();
+xhr.open('get', 'https://solutions.weblite.ca/pdfocrx/scansmpl.pdf', true);
+
+// Load the data directly as a Blob.
+xhr.responseType = 'blob';
+
+xhr.onload = () => {
+  document.querySelector('#hello-world').src = URL.createObjectURL(this.response);
+};
+
+xhr.send(); 
+			</script>
+	</body>
+</html>
