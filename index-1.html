@@ -6,13 +6,7 @@
   </head>
 
   <body>
-    <object
-      data=""
-      style="width:100%;height:100vh;"
-			id="hello-world"
-    >
-	    Fall back content
-		</object>
+    
 		<script>
 			var blobToBase64 = function(blob, callback) {
     var reader = new FileReader();
@@ -31,7 +25,12 @@ xhr.responseType = 'blob';
 
 xhr.onload = function() {
   blobToBase64(this.response, function(result){
-    document.querySelector('#hello-world').setAttribute('data',result);
+	  var obj = document.createElement('object');
+    	  obj.setAttribute('data',result);
+	  obj.setAttribute('type','application/pdf');
+	  obj.setAttribute('style','width:100%;height:100vh;');
+	  document.body.appendChild(obj);
+	  
   });
 };
 
