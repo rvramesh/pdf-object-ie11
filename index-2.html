@@ -14,16 +14,5 @@
     >
 	    Fall back content
 		</object>
-		<script>
-			var blobToBase64 = function(blob, callback) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        var dataUrl = reader.result;
-        callback(dataUrl);
-    };
-    reader.readAsDataURL(blob);
-};
-
-			</script>
 	</body>
 </html>
