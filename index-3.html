@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    
+		<script>
+		
+			(function(exports, d) {
+  function domReady(fn, context) {
+
+    function onReady(event) {
+      d.removeEventListener("DOMContentLoaded", onReady);
+      fn.call(context || exports, event);
+    }
+
+    function onReadyIe(event) {
+      if (d.readyState === "complete") {
+        d.detachEvent("onreadystatechange", onReadyIe);
+        fn.call(context || exports, event);
+      }
+    }
+
+    d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+    d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+  }
+
+  exports.domReady = domReady;
+})(window, document);
+			
+			domReady( function() {
+
+	  var obj = document.createElement('object');
+    	  obj.setAttribute('data','https://rvramesh.com/pdf-object-ie11/scansmpl.pdf');
+	  obj.setAttribute('type','application/pdf');
+	  obj.setAttribute('style','width:100%;height:100vh;');
+	  document.body.appendChild(obj);
+	  
+  });
+			</script>
+	</body>
+</html>
