@@ -29,7 +29,7 @@ xhr.open('get', 'https://solutions.weblite.ca/pdfocrx/scansmpl.pdf', true);
 // Load the data directly as a Blob.
 xhr.responseType = 'blob';
 
-xhr.onload = () => {
+xhr.onload = function() {
   document.querySelector('#hello-world').src = URL.createObjectURL(this.response);
 };
 
