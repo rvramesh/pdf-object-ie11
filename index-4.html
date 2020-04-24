@@ -41,16 +41,13 @@
       function fetchContent(url, success, failure) {
         var request = new XMLHttpRequest();
         request.open("GET", url, true);
-        request.responseType = "arraybuffer";
+        request.responseType = "blob";
 
         request.onload = function() {
           if (this.status >= 200 && this.status < 400) {
             var contentType = request.getResponseHeader("Content-Type");
             // Success!
-            var str = btoa(
-              String.fromCharCode.apply(null, new Uint8Array(this.response))
-            );
-            success(contentType, "data:" + contentType + ";base64," + str);
+            success(contentType, this.response);
           } else {
             // We reached our target server, but it returned an error
             failure("404");
@@ -76,8 +73,9 @@
             var obj = document.createElement("object");
 
             obj.setAttribute("style", "width:100%;height:100vh;");
-            obj.setAttribute("data", content);
+            obj.setAttribute("data", URL.createObjectURL(blob););
             obj.setAttribute("type", contentType);
+            obj.addEventListener("load", function(){URL.revokeObjectURL(this.data);});
             document.body.appendChild(obj);
           },
           function(message) {
