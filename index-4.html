@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+	 
+		<script>
+		
+			(function(exports, d) {
+  function domReady(fn, context) {
+
+    function onReady(event) {
+      d.removeEventListener("DOMContentLoaded", onReady);
+      fn.call(context || exports, event);
+    }
+
+    function onReadyIe(event) {
+      if (d.readyState === "complete") {
+        d.detachEvent("onreadystatechange", onReadyIe);
+        fn.call(context || exports, event);
+      }
+    }
+
+    d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+    d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+  }
+
+  exports.domReady = domReady;
+})(window, document);
+			function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+			
+			domReady( function() {
+var type = getParameterByName("type");
+	  var obj = document.createElement('object');
+				if(!type || type==="pdf"){
+    	  obj.setAttribute('data','https://rvramesh.com/pdf-object-ie10/scansmpl.pdf');
+				} else {
+					obj.setAttribute('data','https://rvramesh.com/pdf-object-ie11/marbles.tif');
+				}
+	  obj.setAttribute('style','width:100%;height:100vh;');
+				obj.attachEventListener("error", function() { alert('error'); });
+	  document.body.appendChild(obj);
+	  
+  });
+			</script>
+	</body>
+</html>
