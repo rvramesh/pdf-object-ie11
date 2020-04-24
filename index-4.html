@@ -73,7 +73,7 @@
             var obj = document.createElement("object");
 
             obj.setAttribute("style", "width:100%;height:100vh;");
-            obj.setAttribute("data", URL.createObjectURL(blob););
+            obj.setAttribute("data", URL.createObjectURL(blob));
             obj.setAttribute("type", contentType);
             obj.addEventListener("load", function(){URL.revokeObjectURL(this.data);});
             document.body.appendChild(obj);
