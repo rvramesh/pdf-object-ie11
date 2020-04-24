@@ -72,7 +72,7 @@
           url,
           function(contentType, content) {
             var fileReader = new window.FileReader();
-            fileReader.readAsDataURL(blob);
+            fileReader.readAsDataURL(content);
             fileReader.onloadend = function() {
               var obj = document.createElement("object");
 
