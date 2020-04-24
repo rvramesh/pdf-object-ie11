@@ -41,7 +41,7 @@
       function fetchContent(url, success, failure) {
         var request = new XMLHttpRequest();
         request.open("GET", url, true);
-        request.responseType = "arraybuffer";
+        request.responseType = "blob";
 
         request.onload = function() {
           if (this.status >= 200 && this.status < 400) {
