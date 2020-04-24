@@ -47,10 +47,8 @@
           if (this.status >= 200 && this.status < 400) {
             var contentType = request.getResponseHeader("Content-Type");
             // Success!
-            var str = btoa(
-              String.fromCharCode.apply(null, new Uint8Array(this.response))
-            );
-            success(contentType, "data:" + contentType + ";base64," + str);
+            
+            success(contentType, this.response);
           } else {
             // We reached our target server, but it returned an error
             failure("404");
